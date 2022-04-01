@@ -1,0 +1,8 @@
+.form-selector:hover {
+	cursor: pointer;
+}
+
+#error-text {
+	display: none;
+	color: red;
+}
