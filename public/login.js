@@ -6,10 +6,24 @@ const init = async () => {
 	const loginSelect = document.querySelector('#select-login')
 	const createSelect = document.querySelector('#select-create')
 	const errorText = document.querySelector('#error-text')
+	const submitButton = document.querySelector('#submit-button')
+
+	submitButton.addEventListener('click', async (event) => {
+		if (loginStatus === 'login') {
+			await submitLoginForm()
+		} else {
+			await submitCreateForm()
+		}
+	})
+
+	document.addEventListener('keyup', async (event) => {
+		if (event.keyCode == 13) {
+			submitButton.click()
+		}
+	})
 
 	// handle login form submit
-	loginForm.addEventListener('submit', async (event) => {
-		event.preventDefault()
+	const submitLoginForm = async () => {
 		errorText.innerText = ''
 		errorText.style.display = 'none'
 		let formData = new FormData(loginForm)
@@ -27,14 +41,13 @@ const init = async () => {
 			window.location.replace('/')
 		} else {
 			let json = await response.json()
-			errorText.innerText = json.message
+			errorText.innerText = 'Incorrect username or password'
 			errorText.style.display = 'block'
 		}
-	})
+	}
 
 	// handle new account form submit
-	createForm.addEventListener('submit', async (event) => {
-		event.preventDefault()
+	const submitCreateForm = async () => {
 		errorText.innerText = ''
 		errorText.style.display = 'none'
 		let formData = new FormData(createForm)
@@ -55,28 +68,28 @@ const init = async () => {
 			window.location.replace('/')
 		} else {
 			let json = await response.json()
-			errorText.innerText = json.message
+			errorText.innerText = 'Account creation failed'
 			errorText.style.display = 'block'
 		}
-	})
+	}
 
 	// update form based on selector
 	const updateForm = async (status) => {
 		errorText.style.display = 'none'
 		if (loginStatus === 'login') {
 			createForm.style.display = 'none'
-			createSelect.style.textDecoration = 'underline'
-			createSelect.style.color = 'blue'
 			loginForm.style.display = 'block'
-			loginSelect.style.textDecoration = 'none'
-			loginSelect.style.color = 'black'
+			loginSelect.classList.remove('form-selector-inactive')
+			loginSelect.classList.add('form-selector-active')
+			createSelect.classList.add('form-selector-inactive')
+			createSelect.classList.remove('form-selector-active')
 		} else {
 			loginForm.style.display = 'none'
-			loginSelect.style.textDecoration = 'underline'
-			loginSelect.style.color = 'blue'
 			createForm.style.display = 'block'
-			createSelect.style.textDecoration = 'none'
-			createSelect.style.color = 'black'
+			loginSelect.classList.add('form-selector-inactive')
+			loginSelect.classList.remove('form-selector-active')
+			createSelect.classList.remove('form-selector-inactive')
+			createSelect.classList.add('form-selector-active')
 		}
 	}
 

@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Dock</title>
 		<script src="login.js"></script>
 		<link rel="stylesheet" href="login.css">
 	</head>
 	<body>
-		<h1>Hello, dock!</h1>
-		<form id="login">
-			<label for="login-username">Username</label>
-			<input type="text" name="login-username" id="login-username" placeholder="username">
-			<label for="login-password">Password</label>
-			<input type="password" name="login-password" id="login-password" type="password" placeholder="password">
-			<button type="submit">Submit</button>
-		</form>
-		<form id="create">
-			<label for="create-username">Username</label>
-			<input type="text" name="create-username" id="create-username" placeholder="username">
-			<label for="create-password">Account Password</label>
-			<input type="password" name="create-password" id="create-password" placeholder="password">
-			<label for="special-password">Special Password</label>
-			<input type="password" name="special-password" id="special-password" placeholder="password">
-			<button type="submit">Submit</button>
-		</form>
-		<p id="error-text"></p>
-		<p><span id=select-login class="form-selector">Login</span> | <span id="select-create" class="form-selector">Create Account</span></p>
+		<div id="dock-logo"></div>
+		<h1 id="dock-title">Howdy!</h1>
+		<div id="form-container">
+			<div id="select-container">
+				<button id="select-login" class="form-selector-active">LOGIN</button>
+				<button id="select-create" class="form-selector-inactive">CREATE</button>
+			</div>
+			<form class="inner-form-container" id="login">
+				<label class="label-container">
+					<span class="label">Username</span>
+					<input type="text" name="login-username" id="login-username" placeholder="username" >
+				</label>
+				<label class="label-container">
+					<span class="label">Password</span>
+					<input type="password" name="login-password" id="login-password" type="password" placeholder="password">
+				</label>
+			</form>
+			<form class="inner-form-container" id="create">
+				<label class="label-container">
+					<span class="label">Username</span>
+					<input type="text" name="create-username" id="create-username" placeholder="username">
+				</label>
+				
+				<label class="label-container">
+					<span class="label">Password</span>
+				<input type="password" name="create-password" id="create-password" placeholder="password">
+				</label>
+				
+				<label class="label-container">
+					<span class="label">Token</span>
+				<input type="password" name="special-password" id="special-password" placeholder="password">
+				</label>
+			</form>
+			<button id="submit-button">Submit</button>
+			<p id="error-text"></p>
+		</div>
 	</body>
 </html>

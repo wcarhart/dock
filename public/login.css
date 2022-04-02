@@ -1,8 +1,128 @@
-.form-selector:hover {
+:root {
+	--dark-blue: #34485E;
+	--darkened-dark-blue: #1a242e;
+	--light-blue: #90CAF9;
+	--red: #F44335;
+	--grey:  #607D8A;
+	--off-white: #FAF9F6;
+	--darkened-off-white: #eeebe1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+	background-color: var(--off-white);
+	font-family: 'Roboto', sans-serif;
+}
+
+#select-container {
+	margin: 1rem auto;
+	padding: 1rem 0;
+	display: table;
+}
+
+#select-login {
+	border-radius: 2rem 0 0 2rem;
+	padding: 1rem 1rem 1rem 1.5rem;
+	border: none;
+}
+
+#select-create {
+	border-radius: 0 2rem 2rem 0;
+	padding: 1rem 1.5rem 1rem 1rem;
+	border: none;
+}
+
+.form-selector-active {
+	color: var(--off-white);
+	background-color: var(--dark-blue);
+}
+
+.form-selector-inactive {
+	color: var(--dark-blue);
+	background-color: var(--off-white);
+}
+
+.form-selector-inactive:hover {
 	cursor: pointer;
+	background-color: var(--darkened-off-white);
 }
 
 #error-text {
 	display: none;
-	color: red;
+	color: var(--red);
+	text-align: center;
+}
+
+#dock-logo {
+	background: url('/logo.png') no-repeat 0 0;
+	background-position: center;
+	width:100%;
+	height:100%;
+	height: 8rem;
+}
+
+#dock-title {
+	text-align: center;
+}
+
+#form-container {
+	width: 21rem;
+	padding: 1rem;
+	margin: 0 auto;
+	background-color: var(--light-blue);
+	border-radius: 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.inner-form-container {
+	display: grid;
+	grid-template-columns: max-content max-content;
+	margin: 0 auto;
+	grid-gap: 5px;
+}
+
+.inner-form-container label {
+	text-align: right;
+}
+
+#submit-button {
+	margin: 0 auto;
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: var(--dark-blue);
+	color: var(--off-white);
+	border-radius: 2rem;
+	border: none;
+}
+
+#submit-button:hover {
+	background-color: var(--darkened-dark-blue);
+	cursor: pointer;
+}
+
+input {
+	margin-bottom: 0.5rem;
+	padding: 0.3rem;
+	background-color: var(--off-white);
+}
+
+.inner-form-container .label-container {
+	display: block; 
+	width: 100%;
+}
+
+.label {
+	padding-bottom: 0.5rem;
+}
+
+.inner-form-container .label, .inner-form-container input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.label-container {
+	display: flex;
+	flex-direction: row;
 }

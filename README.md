@@ -1,7 +1,16 @@
-<p align="center"><img alt="dock logo" src="logo.png" /></p>
+<p align="center"><img alt="dock logo" src="public/logo.png" /></p>
 
 <h1 align="center">dock</h1>
 <h5 align="center">a good place to keep some tugboats</h5>
+
+## Overview
+Dock is a wrapper, manager, and secure web interface for [tug](https://github.com/wcarhart/tug).
+
+## Usage
+
+## Install
+
+## FAQ
 
 ```bash
 # set up dependencies
@@ -24,17 +33,20 @@ sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 npm install --global pm2@latest
 pm2 --version # verify this works
 
-# install tug
-# replace 'wcarhart' with your username
+# install dock
 mkdir -p code
 cd code
 git clone git@github.com:wcarhart/dock.git
 cd dock
 yarn install
 # copy any necessary .env files to VM
-# set up tug config.json as desired
+# set up dock config.json as desired
+sudo apt-get install certbot
+sudo certbot certonly --manual # follow prompts
+sudo chown -R pm2 /etc/letsencrypt
+sudo chgrp -R pm2 /etc/letsencrypt/
 yarn prod # verify this works, should see app at domain/IP
-pm2 start yarn --name wcarhart/tug -- prod # verify this works, should see app at domain/IP
+pm2 start yarn --name dock -- prod # verify this works, should see app at domain/IP
 pm2 startup systemd
 # this will spit out another command to run, make sure you run it VERBATIM
 pm2 save
@@ -43,8 +55,7 @@ sudo reboot
 After reboot, SSH back into the VM and continue.
 ```bash
 sudo su pm2
-# replace 'wcarhart' with your username
-cd ~/code/wcarhart
+cd
 sudo systemctl start pm2-pm2
 pm2 save
 ```
