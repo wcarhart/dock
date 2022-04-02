@@ -1,12 +1,25 @@
 const init = async () => {
-	let loginStatus = 'login'
-
 	const loginForm = document.querySelector('#login')
 	const createForm = document.querySelector('#create')
 	const loginSelect = document.querySelector('#select-login')
 	const createSelect = document.querySelector('#select-create')
 	const errorText = document.querySelector('#error-text')
 	const submitButton = document.querySelector('#submit-button')
+	const dockTitle = document.querySelector('#dock-title')
+
+	let loginStatus = 'login'
+	let GREETINGS = [
+		'Howdy!',
+		"Top of the mornin' to ya!",
+		"Hey there good lookin'",
+		'Welcome back!',
+		'Ready to get back at it?',
+		'How can I help you today?',
+		'Almost there!',
+		"Mind auth'ing first?",
+		"Ready whenever you are"
+	]
+	dockTitle.innerText = GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
 
 	submitButton.addEventListener('click', async (event) => {
 		if (loginStatus === 'login') {
