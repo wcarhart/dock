@@ -12,6 +12,9 @@ Dock is a wrapper, manager, and secure web interface for [tug](https://github.co
 
 ## FAQ
 
+# TODO
+Whatever you decide to do for this README surrounding deploy settings, you should copy it to Tug. I'm thinking we have a section on how to deploy with PM2, but don't include the full shell commands on the main page.
+
 ```bash
 # set up dependencies
 sudo useradd -m pm2
