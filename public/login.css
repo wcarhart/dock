@@ -67,7 +67,7 @@ html {
 }
 
 #form-container {
-	width: 21rem;
+	width: 25rem;
 	padding: 1rem;
 	margin: 0 auto;
 	background-color: var(--light-blue);
@@ -80,7 +80,6 @@ html {
 	display: grid;
 	grid-template-columns: max-content max-content;
 	margin: 0 auto;
-	grid-gap: 5px;
 }
 
 .inner-form-container label {
@@ -104,8 +103,11 @@ html {
 
 input {
 	margin-bottom: 0.5rem;
-	padding: 0.3rem;
+	padding: 0.7rem;
 	background-color: var(--off-white);
+	border: none;
+	border-radius: 0.5rem;
+	width: 12rem;
 }
 
 .inner-form-container .label-container {
