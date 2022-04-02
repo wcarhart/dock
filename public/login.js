@@ -6,6 +6,7 @@ const init = async () => {
 	const errorText = document.querySelector('#error-text')
 	const submitButton = document.querySelector('#submit-button')
 	const dockTitle = document.querySelector('#dock-title')
+	const dockLogo = document.querySelector('#dock-logo')
 
 	let loginStatus = 'login'
 	let GREETINGS = [
@@ -19,8 +20,19 @@ const init = async () => {
 		"Mind auth'ing first?",
 		"Ready whenever you are"
 	]
-	dockTitle.innerText = GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
 
+	// update dock title
+	const updateTitle = async (event) => {
+		let newText
+		do {
+			newText = GREETINGS[Math.floor(Math.random() * GREETINGS.length)]
+		} while (newText === dockTitle.innerText)
+		dockTitle.innerText = newText
+	}
+	await updateTitle()
+	dockTitle.addEventListener('click', updateTitle)
+
+	// handle form submission
 	submitButton.addEventListener('click', async (event) => {
 		if (loginStatus === 'login') {
 			await submitLoginForm()
@@ -29,6 +41,7 @@ const init = async () => {
 		}
 	})
 
+	// auto submit form on 'Enter'
 	document.addEventListener('keyup', async (event) => {
 		if (event.keyCode == 13) {
 			submitButton.click()
@@ -106,6 +119,20 @@ const init = async () => {
 		}
 	}
 
+	// animate logo spin
+	const spinLogo = async () => {
+		dockLogo.style.transform = 'rotate(360deg)'
+	}
+
+	// animate logo unspin
+	const unSpinLogo = async () => {
+		dockLogo.style.transform = 'rotate(0)'
+	}
+
+	// animate logo on hover
+	dockLogo.addEventListener('mouseenter', spinLogo)
+	dockLogo.addEventListener('mouseleave', unSpinLogo)
+
 	// handle form select
 	const selectForm = async (event) => {
 		loginStatus = event.srcElement.id.replace(/^select-/, '')
@@ -114,6 +141,11 @@ const init = async () => {
 	loginSelect.addEventListener('click', selectForm)
 	createSelect.addEventListener('click', selectForm)
 	await updateForm()
+
+	await spinLogo()
+	setTimeout(async () => {
+		await unSpinLogo()
+	}, 1000)
 }
 
 window.onload = init

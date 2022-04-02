@@ -1,3 +1,141 @@
+:root {
+	--dark-blue: #34485E;
+	--darkened-dark-blue: #1a242e;
+	--light-blue: #90CAF9;
+	--red: #F44335;
+	--grey:  #607D8A;
+	--off-white: #FAF9F6;
+	--darkened-off-white: #eeebe1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+	background-color: var(--off-white);
+	font-family: 'Roboto', sans-serif;
+	height: 100%;
+}
+
+body {
+	overflow-x: hidden;
+	height: 100%;
+}
+
+#dock-logo {
+	background: url('/logo.png') no-repeat 0 0;
+	background-position: center;
+	height: 6rem;
+	width: 6rem;
+	margin: 2rem auto;
+	border-radius: 4rem;
+	transition: transform .7s ease-in-out;
+}
+
+#dock-logo:hover {
+	transform: rotate(360deg);
+}
+
 #error-text {
-	color: red;
+	display: none;
+	color: var(--red);
+}
+
+#loaded-text {
+	display: none;
+}
+
+h1 {
+	font-size: 4rem;
+	margin-bottom: 0;
+}
+
+#main {
+	margin: 0 auto;
+	width: 37.5rem;
+}
+
+#table-container {
+	display: none;
+	margin-top: 3rem;
+	background-color: var(--light-blue);
+	border-radius: 2rem;
+	padding: 2rem;
+}
+
+.origin-td:hover {
+	cursor: pointer;
+	color: var(--off-white);
+}
+
+.version-td:hover {
+	cursor: pointer;
+	color: var(--off-white);
+}
+
+.status-td:hover {
+	cursor: pointer;
+	color: var(--off-white);
+}
+
+.repository-td:hover {
+	cursor: pointer;
+	color: var(--off-white);
+}
+
+th {
+	padding: 0 0.5rem;
+	font-size: 1.1rem;
+}
+
+td {
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+a {
+	text-decoration: none;
+	color: var(--red);
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#logout {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	background-color: var(--dark-blue);
+	color: var(--off-white);
+	border: none;
+	border-radius: 2rem;
+	padding: 1rem;
+}
+
+#logout:hover {
+	background-color: var(--darkened-dark-blue);
+	cursor: pointer;
+}
+
+.redeploy-button {
+	background-color: var(--dark-blue);
+	color: var(--off-white);
+	border: none;
+	border-radius: 2rem;
+	font-size: 1.1rem;
+	margin-right: 1rem;
+}
+
+.redeploy-button:hover {
+	background-color: var(--darkened-dark-blue);
+	cursor: pointer;
+}
+
+.redeploy-button-pending {
+	background-color: var(--grey);
+}
+
+.redeploy-button-pending:hover {
+	background-color: var(--grey);
+	cursor: default;
 }

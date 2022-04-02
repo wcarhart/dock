@@ -57,9 +57,15 @@ html {
 #dock-logo {
 	background: url('/logo.png') no-repeat 0 0;
 	background-position: center;
-	width:100%;
-	height:100%;
-	height: 8rem;
+	height: 6rem;
+	width: 6rem;
+	margin: 2rem auto;
+	border-radius: 4rem;
+	transition: transform .7s ease-in-out;
+}
+
+#dock-logo:hover {
+	transform: rotate(360deg);
 }
 
 #dock-title {
