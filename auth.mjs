@@ -70,8 +70,6 @@ const checkPass = async (password, salt, expectedHash) => {
 	})
 }
 
-// TODO: consider adding ability to generate ACCOUNT_CREATION_SALT via dock CLI
-
 // create a new account
 // requires 2 things:
 //  1. in POST body, must have 'username', 'password' for new account

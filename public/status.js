@@ -29,7 +29,8 @@ const init = async () => {
 			return
 		}
 
-		loadedText.innerHTML = 'Below is a table of configured repositories with <a href="https://github.com/wcarhart/tug" target="_blank">tug</a>. Don\'t see something you\'re expecting? Double check the <code>config.json</code> file in your dock deployment.'
+		errorText.style.display = 'none'
+		loadedText.innerHTML = 'Below is a table of repositories configured with <a href="https://github.com/wcarhart/tug" target="_blank">tug</a>. Don\'t see something you\'re expecting? Double check the <code>config.json</code> file in your dock deployment.'
 		loadedText.style.display = 'block'
 		DATA = json
 	}
@@ -109,19 +110,41 @@ const init = async () => {
 	// populate table rows with data
 	const populateTable = async () => {
 		for (let [index, tug] of DATA.entries()) {
+
+			// dynamically update table
+			let useOldRow = false
+			if (index < tbody.rows.length) {
+				if (tbody.rows.item(index).cells[1].innerText === tug.name && tbody.rows.item(index).cells[2].innerText === tug.status && tbody.rows.item(index).cells[3].innerText === tug.version && tbody.rows.item(index).cells[4].innerText === tug.origin) {
+					continue
+				} else {
+					// use old row
+					row = tbody.rows.item(index)
+					do {
+						row.removeChild(row.children[0])
+					} while (row.children.length > 0)
+					useOldRow = true
+				}
+			} else {
+				// make new row
+				row = document.createElement('tr')
+			}
+
+			// create new HTML elements
 			let buttonTd = document.createElement('td')
 			let button = document.createElement('button')
+			let repository = document.createElement('td')
+			let status = document.createElement('td')
+			let version = document.createElement('td')
+			let origin = document.createElement('td')
+
+			// set up new redeploy button
 			button.innerText = '↻'
 			button.id = `redeploy-${index}`
 			button.className = 'redeploy-button'
 			button.addEventListener('click', redeploy)
 			buttonTd.append(button)
 
-			let row = document.createElement('tr')
-			let repository = document.createElement('td')
-			let status = document.createElement('td')
-			let version = document.createElement('td')
-			let origin = document.createElement('td')
+			// set up new table data
 			repository.innerText = tug.name
 			repository.className = 'repository-td'
 			repository.id = `repository-${index}`
@@ -143,7 +166,9 @@ const init = async () => {
 				row.append(td)
 			}
 
-			tbody.append(row)
+			if (!useOldRow) {
+				tbody.append(row)
+			}
 		}
 	}
 
@@ -157,7 +182,7 @@ const init = async () => {
 	const spinLogo = async () => {
 		dockLogo.style.transform = 'rotate(360deg)'
 	}
-	
+
 	// animate logo unspin
 	const unSpinLogo = async () => {
 		dockLogo.style.transform = 'rotate(0)'
@@ -172,7 +197,10 @@ const init = async () => {
 
 	// if population fails, don't render page
 	if (DATA !== null) {
-		let interval = setInterval(populateData, 3000)
+		let interval = setInterval(async () => {
+			await populateData()
+			await populateTable()
+		}, 3000)
 		await createTable()
 		await populateTable()
 		await showTable()

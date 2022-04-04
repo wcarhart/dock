@@ -86,7 +86,7 @@ mongoose.connect(process.env.DB_URL, {
 })
 
 // set up authentication and authorization
-// import './auth.mjs'
+import './auth.mjs'
 
 // set up static routing
 app.use(express.static('public'))
